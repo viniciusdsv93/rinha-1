@@ -1,6 +1,6 @@
 version: '3.4'
 services:
-  app1:
+  app1: &app
     build: .
     hostname: app1
     environment:
@@ -9,12 +9,10 @@ services:
       - "8080"
 
   app2:
-    build: .
+    <<: *app
     hostname: app2
     environment:
       NAME: "2"
-    expose:
-      - "8080"
 
   nginx:
     image: nginx:latest
