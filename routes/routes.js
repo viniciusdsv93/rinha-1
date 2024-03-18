@@ -1,6 +1,7 @@
 const express = require("express");
 const validarPessoa = require("../middlewares/pessoa.middleware");
 const router = express.Router();
+const pessoaController = require("../controllers/pessoa.controller.js");
 
 router.get("/", (req, res) => {
 	res.status(200).send(`Hello world: service ${process.env.NAME}`);
@@ -8,7 +9,7 @@ router.get("/", (req, res) => {
 
 router.post("/pessoas", validarPessoa, (req, res) => {
 	console.log({ 9: req.body });
-	res.status(201).json({ ok: "Pessoa cadastrada" });
+	return pessoaController(req, res);
 });
 
 module.exports = router;
