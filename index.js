@@ -1,12 +1,12 @@
 const express = require("express");
+const router = require("./routes/routes");
 
 const app = express();
 
 const port = process.env.PORT || 8080;
 
-app.get("/", (req, res) => {
-	res.status(200).send(`Hello world: service ${process.env.NAME}`);
-});
+app.use(express.json());
+app.use(router);
 
 app.listen(port, () => {
 	console.log(`Server listening on port ${port}`);
