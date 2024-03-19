@@ -1,5 +1,9 @@
 const { randomUUID } = require("node:crypto");
-const { inserirPessoa, checarDuplicidadeApelido } = require("../models/pessoa.model");
+const {
+	inserirPessoa,
+	checarDuplicidadeApelido,
+	buscarPessoa,
+} = require("../models/pessoa.model");
 
 async function cadastrarPessoa(pessoa) {
 	// gerar UUID
@@ -22,4 +26,8 @@ async function cadastrarPessoa(pessoa) {
 	};
 }
 
-module.exports = cadastrarPessoa;
+async function buscarPessoaPorId(id) {
+	return await buscarPessoa(id);
+}
+
+module.exports = { cadastrarPessoa, buscarPessoaPorId };

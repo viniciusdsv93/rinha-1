@@ -68,7 +68,13 @@ async function checarDuplicidadeApelido(apelido) {
 	return pool.query(query, [apelido]);
 }
 
+async function buscarPessoa(id) {
+	const query = `SELECT * FROM pessoas WHERE id = $1`;
+	return pool.query(query, [id]);
+}
+
 module.exports = {
 	inserirPessoa,
 	checarDuplicidadeApelido,
+	buscarPessoa,
 };
