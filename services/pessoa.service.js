@@ -1,12 +1,25 @@
 const { randomUUID } = require("node:crypto");
+const { inserirPessoa, checarDuplicidadeApelido } = require("../models/pessoa.model");
 
-function cadastrarPessoa(pessoa) {
+async function cadastrarPessoa(pessoa) {
 	// gerar UUID
 	const uuid = randomUUID();
-	console.log({ 6: uuid });
-	console.log({ 7: pessoa });
 
-	// chamar model para persistir no banco
+	const apelidoDuplicado = await checarDuplicidadeApelido(pessoa.apelido);
+	console.log({ apelidoDuplicado });
+	if (apelidoDuplicado.rowCount > 0) {
+		return {
+			ok: false,
+			erro: "Apelido ja em uso",
+		};
+	}
+	pessoa["uuid"] = uuid;
+	const pessoaInserida = await inserirPessoa(pessoa);
+	console.log({ pessoaInserida });
+	return {
+		ok: true,
+		id: uuid,
+	};
 }
 
 module.exports = cadastrarPessoa;

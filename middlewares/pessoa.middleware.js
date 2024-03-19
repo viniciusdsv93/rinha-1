@@ -1,5 +1,3 @@
-const controleApelidos = require("..");
-
 function validarPessoa(req, res, next) {
 	const { nome, apelido, nascimento, stack } = req.body;
 
@@ -15,11 +13,6 @@ function validarPessoa(req, res, next) {
 
 	if (apelido.length > 32) {
 		return res.status(400).json({ erro: "Apelido deve ter até 32 caracteres" });
-	}
-
-	// TODO checar no redis se apelido ja foi cadastrado anteriormente
-	if (controleApelidos[apelido]) {
-		return res.status(422).json({ erro: `Apelido ${apelido} ja em uso` });
 	}
 
 	if (typeof nome != "string") {
