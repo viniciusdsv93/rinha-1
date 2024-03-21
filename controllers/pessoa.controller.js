@@ -3,6 +3,7 @@ const {
 	buscarPessoaPorIdService,
 	ContarPessoasService,
 	buscarPessoaPorTermoService,
+	ListarPessoasService,
 } = require("../services/pessoa.service");
 
 async function cadastrarPessoaController(req, res) {
@@ -37,9 +38,15 @@ async function ContarPessoasController(req, res) {
 	res.status(200).json({ total: totalPessoas.rows[0].total_pessoas });
 }
 
+async function ListarPessoasController(req, res) {
+	let pessoas = await ListarPessoasService();
+	res.status(200).json(pessoas.rows);
+}
+
 module.exports = {
 	cadastrarPessoaController,
 	BuscarPessoaPorIdController,
 	ContarPessoasController,
 	BuscarPessoaPorTermoController,
+	ListarPessoasController,
 };

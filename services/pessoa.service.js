@@ -5,6 +5,7 @@ const {
 	buscarPessoaPorId,
 	buscarPessoaPorTermo,
 	contarPessoas,
+	listarPessoas,
 } = require("../models/pessoa.model");
 
 async function cadastrarPessoaService(pessoa) {
@@ -38,9 +39,14 @@ async function ContarPessoasService() {
 	return await contarPessoas();
 }
 
+async function ListarPessoasService() {
+	return await listarPessoas();
+}
+
 module.exports = {
 	cadastrarPessoaService,
 	buscarPessoaPorIdService,
 	ContarPessoasService,
 	buscarPessoaPorTermoService,
+	ListarPessoasService,
 };

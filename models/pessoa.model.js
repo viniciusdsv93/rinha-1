@@ -83,10 +83,16 @@ async function contarPessoas() {
 	return pool.query(query, []);
 }
 
+async function listarPessoas() {
+	const query = `SELECT * FROM pessoas`;
+	return pool.query(query, []);
+}
+
 module.exports = {
 	inserirPessoa,
 	checarDuplicidadeApelido,
 	buscarPessoaPorId,
 	buscarPessoaPorTermo,
 	contarPessoas,
+	listarPessoas,
 };

@@ -6,6 +6,7 @@ const {
 	BuscarPessoaPorIdController,
 	ContarPessoasController,
 	BuscarPessoaPorTermoController,
+	ListarPessoasController,
 } = require("../controllers/pessoa.controller.js");
 
 router.get("/", (req, res) => {
@@ -26,6 +27,10 @@ router.get("/pessoas", (req, res) => {
 
 router.get("/contagem-pessoas", (req, res) => {
 	return ContarPessoasController(req, res);
+});
+
+router.get("/listar-pessoas", (req, res) => {
+	return ListarPessoasController(req, res);
 });
 
 module.exports = router;
