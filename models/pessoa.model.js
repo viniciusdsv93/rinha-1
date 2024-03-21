@@ -74,8 +74,8 @@ async function buscarPessoaPorId(id) {
 }
 
 async function buscarPessoaPorTermo(termo) {
-	const query = `SELECT * FROM pessoas WHERE nome LIKE '%$1%' OR apelido LIKE '%$1%' OR stack ->> LIKE '%$1%'`;
-	return pool.query(query, [termo]);
+	const query = `SELECT * FROM pessoas WHERE nome ILIKE $1 OR apelido ILIKE $1 OR stack::TEXT ILIKE $1 LIMIT 50`;
+	return pool.query(query, [`%${termo}%`]);
 }
 
 async function contarPessoas() {

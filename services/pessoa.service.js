@@ -12,7 +12,6 @@ async function cadastrarPessoaService(pessoa) {
 	const uuid = randomUUID();
 
 	const apelidoDuplicado = await checarDuplicidadeApelido(pessoa.apelido);
-	console.log({ apelidoDuplicado });
 	if (apelidoDuplicado.rowCount > 0) {
 		return {
 			ok: false,
@@ -21,7 +20,6 @@ async function cadastrarPessoaService(pessoa) {
 	}
 	pessoa["uuid"] = uuid;
 	const pessoaInserida = await inserirPessoa(pessoa);
-	console.log({ pessoaInserida });
 	return {
 		ok: true,
 		id: uuid,

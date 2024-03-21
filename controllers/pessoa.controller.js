@@ -25,11 +25,11 @@ async function BuscarPessoaPorIdController(req, res) {
 }
 
 async function BuscarPessoaPorTermoController(req, res) {
-	const pessoasBuscadas = await buscarPessoaPorTermoService(req.query.t);
-	if (pessoasBuscadas.rowCount == 0) {
-		return res.status(404).json({ erro: "Nao ha pessoa com o id informado" });
+	if (!req.query.t) {
+		return res.status(400).send();
 	}
-	res.status(200).json({ data: pessoasBuscadas.rows[0] });
+	const pessoasBuscadas = await buscarPessoaPorTermoService(req.query.t);
+	res.status(200).json(pessoasBuscadas.rows);
 }
 
 async function ContarPessoasController(req, res) {

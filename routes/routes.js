@@ -13,7 +13,6 @@ router.get("/", (req, res) => {
 });
 
 router.post("/pessoas", validarPessoa, (req, res) => {
-	console.log({ 9: req.body });
 	return cadastrarPessoaController(req, res);
 });
 
