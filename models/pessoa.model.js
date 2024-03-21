@@ -73,8 +73,14 @@ async function buscarPessoa(id) {
 	return pool.query(query, [id]);
 }
 
+async function contarPessoas() {
+	const query = `SELECT count(id) as total_pessoas FROM pessoas`;
+	return pool.query(query, []);
+}
+
 module.exports = {
 	inserirPessoa,
 	checarDuplicidadeApelido,
 	buscarPessoa,
+	contarPessoas,
 };

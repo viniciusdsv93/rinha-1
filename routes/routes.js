@@ -4,6 +4,7 @@ const router = express.Router();
 const {
 	cadastrarPessoaController,
 	BuscarPessoaPorIdController,
+	ContarPessoasController,
 } = require("../controllers/pessoa.controller.js");
 
 router.get("/", (req, res) => {
@@ -17,6 +18,10 @@ router.post("/pessoas", validarPessoa, (req, res) => {
 
 router.get("/pessoas/:id", (req, res) => {
 	return BuscarPessoaPorIdController(req, res);
+});
+
+router.get("/contagem-pessoas", (req, res) => {
+	return ContarPessoasController(req, res);
 });
 
 module.exports = router;

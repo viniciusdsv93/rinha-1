@@ -1,4 +1,8 @@
-const { cadastrarPessoa, buscarPessoaPorId } = require("../services/pessoa.service");
+const {
+	cadastrarPessoa,
+	buscarPessoaPorId,
+	ContarPessoasService,
+} = require("../services/pessoa.service");
 
 async function cadastrarPessoaController(req, res) {
 	const pessoaCadastrada = await cadastrarPessoa(req.body);
@@ -10,11 +14,19 @@ async function cadastrarPessoaController(req, res) {
 
 async function BuscarPessoaPorIdController(req, res) {
 	const pessoaBuscada = await buscarPessoaPorId(req.params.id);
-	console.log({ 13: pessoaBuscada });
 	if (pessoaBuscada.rowCount == 0) {
 		return res.status(404).json({ erro: "Nao ha pessoa com o id informado" });
 	}
 	res.status(200).json({ data: pessoaBuscada.rows[0] });
 }
 
-module.exports = { cadastrarPessoaController, BuscarPessoaPorIdController };
+async function ContarPessoasController(req, res) {
+	let totalPessoas = await ContarPessoasService();
+	res.status(200).json({ total: totalPessoas.rows[0].total_pessoas });
+}
+
+module.exports = {
+	cadastrarPessoaController,
+	BuscarPessoaPorIdController,
+	ContarPessoasController,
+};

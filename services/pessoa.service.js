@@ -3,6 +3,7 @@ const {
 	inserirPessoa,
 	checarDuplicidadeApelido,
 	buscarPessoa,
+	contarPessoas,
 } = require("../models/pessoa.model");
 
 async function cadastrarPessoa(pessoa) {
@@ -30,4 +31,8 @@ async function buscarPessoaPorId(id) {
 	return await buscarPessoa(id);
 }
 
-module.exports = { cadastrarPessoa, buscarPessoaPorId };
+async function ContarPessoasService() {
+	return await contarPessoas();
+}
+
+module.exports = { cadastrarPessoa, buscarPessoaPorId, ContarPessoasService };
