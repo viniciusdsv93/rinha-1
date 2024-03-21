@@ -68,9 +68,14 @@ async function checarDuplicidadeApelido(apelido) {
 	return pool.query(query, [apelido]);
 }
 
-async function buscarPessoa(id) {
+async function buscarPessoaPorId(id) {
 	const query = `SELECT * FROM pessoas WHERE id = $1`;
 	return pool.query(query, [id]);
+}
+
+async function buscarPessoaPorTermo(termo) {
+	const query = `SELECT * FROM pessoas WHERE nome LIKE '%$1%' OR apelido LIKE '%$1%' OR stack ->> LIKE '%$1%'`;
+	return pool.query(query, [termo]);
 }
 
 async function contarPessoas() {
@@ -81,6 +86,7 @@ async function contarPessoas() {
 module.exports = {
 	inserirPessoa,
 	checarDuplicidadeApelido,
-	buscarPessoa,
+	buscarPessoaPorId,
+	buscarPessoaPorTermo,
 	contarPessoas,
 };

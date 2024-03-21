@@ -2,11 +2,12 @@ const { randomUUID } = require("node:crypto");
 const {
 	inserirPessoa,
 	checarDuplicidadeApelido,
-	buscarPessoa,
+	buscarPessoaPorId,
+	buscarPessoaPorTermo,
 	contarPessoas,
 } = require("../models/pessoa.model");
 
-async function cadastrarPessoa(pessoa) {
+async function cadastrarPessoaService(pessoa) {
 	// gerar UUID
 	const uuid = randomUUID();
 
@@ -27,12 +28,21 @@ async function cadastrarPessoa(pessoa) {
 	};
 }
 
-async function buscarPessoaPorId(id) {
-	return await buscarPessoa(id);
+async function buscarPessoaPorIdService(id) {
+	return await buscarPessoaPorId(id);
+}
+
+async function buscarPessoaPorTermoService(termo) {
+	return await buscarPessoaPorTermo(termo);
 }
 
 async function ContarPessoasService() {
 	return await contarPessoas();
 }
 
-module.exports = { cadastrarPessoa, buscarPessoaPorId, ContarPessoasService };
+module.exports = {
+	cadastrarPessoaService,
+	buscarPessoaPorIdService,
+	ContarPessoasService,
+	buscarPessoaPorTermoService,
+};

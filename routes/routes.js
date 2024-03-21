@@ -5,6 +5,7 @@ const {
 	cadastrarPessoaController,
 	BuscarPessoaPorIdController,
 	ContarPessoasController,
+	BuscarPessoaPorTermoController,
 } = require("../controllers/pessoa.controller.js");
 
 router.get("/", (req, res) => {
@@ -18,6 +19,10 @@ router.post("/pessoas", validarPessoa, (req, res) => {
 
 router.get("/pessoas/:id", (req, res) => {
 	return BuscarPessoaPorIdController(req, res);
+});
+
+router.get("/pessoas", (req, res) => {
+	return BuscarPessoaPorTermoController(req, res);
 });
 
 router.get("/contagem-pessoas", (req, res) => {
