@@ -1,3 +1,5 @@
+const { parse } = require("date-fns");
+
 function validarPessoa(req, res, next) {
 	const { nome, apelido, nascimento, stack } = req.body;
 
@@ -23,7 +25,10 @@ function validarPessoa(req, res, next) {
 		return res.status(400).json({ erro: "Nome deve ter até 100 caracteres" });
 	}
 
-	if (nascimento.split("-").join("").length != 8 || isNaN(Date.parse(nascimento))) {
+	if (
+		nascimento.split("-").join("").length != 8 ||
+		isNaN(parse(nascimento, "yyyy-MM-dd", new Date()))
+	) {
 		return res
 			.status(400)
 			.json({ erro: "Nascimento deve estar no formato AAAA-MM-DD" });
